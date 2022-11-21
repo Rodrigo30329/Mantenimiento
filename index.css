@@ -9,6 +9,7 @@ html,body{
 }
 
 .container_1{
+    display: block;
     overflow: hidden;
     background-color: #333;
 }

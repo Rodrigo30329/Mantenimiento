@@ -13,8 +13,18 @@
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<script>
 	$( function() {
+		$( "#datepicker_inicio" ).datepicker();
+		$( "#datepicker_fin" ).datepicker();
 		$( "#datepicker_inicio_a1" ).datepicker();
 		$( "#datepicker_fin_a1" ).datepicker();
+		$( "#datepicker_inicio_a2" ).datepicker();
+		$( "#datepicker_fin_a2" ).datepicker();
+		$( "#datepicker_inicio_a3" ).datepicker();
+		$( "#datepicker_fin_a3" ).datepicker();
+		$( "#datepicker_inicio_a4" ).datepicker();
+		$( "#datepicker_fin_a4" ).datepicker();
+		$( "#datepicker_inicio_a5" ).datepicker();
+		$( "#datepicker_fin_a5" ).datepicker();
 	} );
 	</script>
 	<title>Mantenimiento</title>
@@ -32,16 +42,16 @@
 							<label> Nombre del proyecto: </label>
 							<input type="text" id="nombre_proyecto_input" name="name_proyecto">
 							<label> Fecha Inicio: </label>
-							<p><input type="text" id="datepicker_inicio_a1"></p>
+							<p><input type="text" id="datepicker_inicio"></p>
 							<label> Fecha Final: </label>
-							<p><input type="text" id="datepicker_fin_a1"></p>
+							<p><input type="text" id="datepicker_fin"></p>
 						</td>
 						<td>
 							<label> Nombre Actividad 1</label>
 							<input type="text" id="nombre_actividad_1" name="name_actividad_1">
 							<label> Nivel de cumplimiento Actividad 1</label>
 							<input type="range" min="1" max="100" value="50" class="slider" id="slider_actividad_1">
-							<label> Fecha Inicio: </label>
+							<br><label> Fecha Inicio: </label>
 							<p><input type="text" id="datepicker_inicio_a1"></p>
 							<label> Fecha Final: </label>
 							<p><input type="text" id="datepicker_fin_a1"></p>
@@ -51,7 +61,7 @@
 							<input type="text" id="nombre_actividad_2" name="name_actividad_2">
 							<label> Nivel de cumplimiento Actividad 2</label>
 							<input type="range" min="1" max="100" value="50" class="slider" id="slider_actividad_2">
-							<label> Fecha Inicio: </label>
+							<br><label> Fecha Inicio: </label>
 							<p><input type="text" id="datepicker_inicio_a2"></p>
 							<label> Fecha Final: </label>
 							<p><input type="text" id="datepicker_fin_a2"></p>
@@ -61,7 +71,7 @@
 							<input type="text" id="nombre_actividad_3" name="name_actividad_3">
 							<label> Nivel de cumplimiento Actividad 3</label>
 							<input type="range" min="1" max="100" value="50" class="slider" id="slider_actividad_3">
-							<label> Fecha Inicio: </label>
+							<br><label> Fecha Inicio: </label>
 							<p><input type="text" id="datepicker_inicio_a3"></p>
 							<label> Fecha Final: </label>
 							<p><input type="text" id="datepicker_fin_a3"></p>
@@ -71,7 +81,7 @@
 							<input type="text" id="nombre_actividad_4" name="name_actividad_4">
 							<label> Nivel de cumplimiento Actividad 4</label>
 							<input type="range" min="1" max="100" value="50" class="slider" id="slider_actividad_4">
-							<label> Fecha Inicio: </label>
+							<br><label> Fecha Inicio: </label>
 							<p><input type="text" id="datepicker_inicio_a4"></p>
 							<label> Fecha Final: </label>
 							<p><input type="text" id="datepicker_fin_a4"></p>
@@ -81,7 +91,7 @@
 							<input type="text" id="nombre_actividad_5" name="name_actividad_5">
 							<label> Nivel de cumplimiento Actividad 1</label>
 							<input type="range" min="1" max="100" value="50" class="slider" id="slider_actividad_5">
-							<label> Fecha Inicio: </label>
+							<br><label> Fecha Inicio: </label>
 							<p><input type="text" id="datepicker_inicio_a5"></p>
 							<label> Fecha Final: </label>
 							<p><input type="text" id="datepicker_fin_a5"></p>
@@ -97,6 +107,8 @@
 	</div>
 	<script>
 	var boton_np = document.getElementById('boton_crear')
+	var npdatein = document.getElementById('datepicker_inicio');
+	var npdatefin = document.getElementById('datepicker_fin');
 	let np=document.getElementById('nombre_proyecto_input')
 	let na1=document.getElementById('nombre_actividad_1')
 	let pora1=document.getElementById('slider_actividad_1')
@@ -112,6 +124,8 @@
 	function Crear(){	
 		npvalue=np.value;
 		na1value=na1.value;
+		npdatevalue=npdatein.value;
+		npdatefinvalue=npdatefin.value;
 		pora1value=pora1.value;
 		pora1value=pora1value.toString();
 		na2value=na2.value;
@@ -130,8 +144,8 @@
 		var data = [{
 			id: "1",
 			name: npvalue,
-			actualStart: Date.UTC(2022, 01, 02),
-			actualEnd: Date.UTC(2022, 06, 15),
+			actualStart: npdatevalue,
+			actualEnd: npdatefinvalue,
 			children: [{
 					id: "1_1",
 					name: na1value,
@@ -165,7 +179,7 @@
 					actualStart: Date.UTC(2022, 02, 26),
 					actualEnd: Date.UTC(2022, 04, 26),
 					connectTo: "1_5",
-					connectorType: "finish-finish",
+					connectorType: "finish-start",
 					progressValue: pora4value/100
 				},
 				{
@@ -180,13 +194,17 @@
 			]
 		}];
 
+		anychart.format.inputDateTimeFormat("MM/dd/yyyy");
+		
 		var treeData = anychart.data.tree(data, "as-tree");
 		var chart = anychart.ganttProject();
+
 		chart.data(treeData);
-		chart.getTimeline().scale().maximum(Date.UTC(2022, 06, 30));
+		chart.getTimeline().scale().minimum(Date.UTC(2022, 06, 1));
+		chart.getTimeline().scale().maximum(Date.UTC(2023, 06, 30));
 		chart.defaultRowHeight(15);
 		chart.headerHeight(30);	
-		chart.splitterPosition("20%")
+		chart.splitterPosition("25%")
 		chart.container("container_2");
 		chart.draw();
 		chart.fitAll();
