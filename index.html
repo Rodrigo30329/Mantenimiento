@@ -31,44 +31,83 @@
 						<td>
 							<label> Nombre del proyecto: </label>
 							<input type="text" id="nombre_proyecto_input" name="name_proyecto">
+							<label> Fecha Inicio: </label>
+							<p><input type="text" id="datepicker_inicio_a1"></p>
+							<label> Fecha Final: </label>
+							<p><input type="text" id="datepicker_fin_a1"></p>
+						</td>
+						<td>
 							<label> Nombre Actividad 1</label>
 							<input type="text" id="nombre_actividad_1" name="name_actividad_1">
 							<label> Nivel de cumplimiento Actividad 1</label>
 							<input type="range" min="1" max="100" value="50" class="slider" id="slider_actividad_1">
 							<label> Fecha Inicio: </label>
-							<p>Date: <input type="text" id="datepicker_inicio_a1"></p>
+							<p><input type="text" id="datepicker_inicio_a1"></p>
 							<label> Fecha Final: </label>
-							<p>Date: <input type="text" id="datepicker_fin_a1"></p>
+							<p><input type="text" id="datepicker_fin_a1"></p>
 						</td>
 						<td>
 							<label> Actividad 2</label>
 							<input type="text" id="nombre_actividad_2" name="name_actividad_2">
+							<label> Nivel de cumplimiento Actividad 2</label>
+							<input type="range" min="1" max="100" value="50" class="slider" id="slider_actividad_2">
+							<label> Fecha Inicio: </label>
+							<p><input type="text" id="datepicker_inicio_a2"></p>
+							<label> Fecha Final: </label>
+							<p><input type="text" id="datepicker_fin_a2"></p>
+						</td>
+						<td>
 							<label> Actividad 3</label>
 							<input type="text" id="nombre_actividad_3" name="name_actividad_3">
+							<label> Nivel de cumplimiento Actividad 3</label>
+							<input type="range" min="1" max="100" value="50" class="slider" id="slider_actividad_3">
+							<label> Fecha Inicio: </label>
+							<p><input type="text" id="datepicker_inicio_a3"></p>
+							<label> Fecha Final: </label>
+							<p><input type="text" id="datepicker_fin_a3"></p>
 						</td>
 						<td>
 							<label> Actividad 4</label>
 							<input type="text" id="nombre_actividad_4" name="name_actividad_4">
+							<label> Nivel de cumplimiento Actividad 4</label>
+							<input type="range" min="1" max="100" value="50" class="slider" id="slider_actividad_4">
+							<label> Fecha Inicio: </label>
+							<p><input type="text" id="datepicker_inicio_a4"></p>
+							<label> Fecha Final: </label>
+							<p><input type="text" id="datepicker_fin_a4"></p>
+						</td>
+						<td>
 							<label> Actividad 5</label>
 							<input type="text" id="nombre_actividad_5" name="name_actividad_5">
+							<label> Nivel de cumplimiento Actividad 1</label>
+							<input type="range" min="1" max="100" value="50" class="slider" id="slider_actividad_5">
+							<label> Fecha Inicio: </label>
+							<p><input type="text" id="datepicker_inicio_a5"></p>
+							<label> Fecha Final: </label>
+							<p><input type="text" id="datepicker_fin_a5"></p>
 						</td>
 					</tbody>
 				</table>
 				<button id="boton_crear"> Crear Proyecto </button>
 			</div>
 		</div>
-		<div id = "container_2"> 
-		</div>
-	</div>	
+	</div>
+	<div id = "container_2"> 
+		
+	</div>
 	<script>
 	var boton_np = document.getElementById('boton_crear')
 	let np=document.getElementById('nombre_proyecto_input')
 	let na1=document.getElementById('nombre_actividad_1')
 	let pora1=document.getElementById('slider_actividad_1')
 	let na2=document.getElementById('nombre_actividad_2')
+	let pora2=document.getElementById('slider_actividad_2')
 	let na3=document.getElementById('nombre_actividad_3')
+	let pora3=document.getElementById('slider_actividad_3')
 	let na4=document.getElementById('nombre_actividad_4')
+	let pora4=document.getElementById('slider_actividad_4')
 	let na5=document.getElementById('nombre_actividad_5')
+	let pora5=document.getElementById('slider_actividad_5')
 	boton_np.addEventListener("click", Crear)
 	function Crear(){	
 		npvalue=np.value;
@@ -76,9 +115,17 @@
 		pora1value=pora1.value;
 		pora1value=pora1value.toString();
 		na2value=na2.value;
+		pora2value=pora2.value;
+		pora2value=pora2value.toString();
 		na3value=na3.value;
+		pora3value=pora3.value;
+		pora3value=pora3value.toString();
 		na4value=na4.value;
+		pora4value=pora4.value;
+		pora4value=pora4value.toString();
 		na5value=na5.value;
+		pora5value=pora5.value;
+		pora5value=pora5value.toString();
 	anychart.onDocumentReady(function() {			
 		var data = [{
 			id: "1",
@@ -90,7 +137,7 @@
 					name: na1value,
 					actualStart: Date.UTC(2022, 01, 02),
 					actualEnd: Date.UTC(2022, 01, 22),
-					connectTo: "1_3",
+					connectTo: "1_2",
 					connectorType: "finish-start",	
 					progressValue: pora1value/100
 				},
@@ -101,7 +148,7 @@
 					actualEnd: Date.UTC(2022, 02, 20),
 					connectTo: "1_3",
 					connectorType: "start-start",
-					progressValue: "90%"
+					progressValue: pora2value/100
 				},
 				{
 					id: "1_3",
@@ -110,7 +157,7 @@
 					actualEnd: Date.UTC(2022, 02, 23),
 					connectTo: "1_4",
 					connectorType: "start-start",
-					progressValue: "80%"
+					progressValue: pora3value/100
 				},
 				{
 					id: "1_4",
@@ -119,7 +166,7 @@
 					actualEnd: Date.UTC(2022, 04, 26),
 					connectTo: "1_5",
 					connectorType: "finish-finish",
-					progressValue: "90%"
+					progressValue: pora4value/100
 				},
 				{
 					id: "1_5",
@@ -128,42 +175,20 @@
 					actualEnd: Date.UTC(2022, 05, 15),
 					connectTo: "1_6",
 					connectorType: "start-finish",
-					progressValue: "60%"
+					progressValue: pora5value/100
 				},
-				{
-					id: "1_6",
-					name: "Actividad 5",
-					actualStart: Date.UTC(2022, 05, 20),
-					actualEnd: Date.UTC(2022, 05, 27),
-					connectTo: "1_7",
-					connectorType: "start-finish",
-					progressValue: "40%"
-				},
-				{
-					id: "1_7",
-					name: "Actividad 6",
-					actualStart: Date.UTC(2022, 05, 30),
-					actualEnd: Date.UTC(2022, 06, 11),
-					progressValue: "19%"
-				},
-
 			]
 		}];
-		// create a data tree
+
 		var treeData = anychart.data.tree(data, "as-tree");
-
-		// create a chart
 		var chart = anychart.ganttProject();
-
-		// set the data
 		chart.data(treeData);
-		// configure the scale
 		chart.getTimeline().scale().maximum(Date.UTC(2022, 06, 30));
-		// set the container id
+		chart.defaultRowHeight(15);
+		chart.headerHeight(30);	
+		chart.splitterPosition("20%")
 		chart.container("container_2");
-		// initiate drawing the chart
 		chart.draw();
-		// fit elements to the width of the timeline
 		chart.fitAll();
 	});
 }
