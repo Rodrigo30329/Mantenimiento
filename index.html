@@ -55,6 +55,14 @@
 							<p><input type="text" id="datepicker_inicio_a1"></p>
 							<label> Fecha Final: </label>
 							<p><input type="text" id="datepicker_fin_a1"></p>
+							<label> Predecesor Actividad 1 </label>
+							<select name="select_predecesor" id="select_predecesor_a1">
+								<option value="1"> Inicio proyecto </option>
+							  	<option value="1_2"> Actividad 2 </option>
+							  	<option value="1_3"> Actividad 3 </option>
+							  	<option value="1_4"> Actividad 4 </option>
+							  	<option value="1_5"> Actividad 5 </option>
+							</select>
 						</td>
 						<td>
 							<label> Actividad 2</label>
@@ -65,6 +73,14 @@
 							<p><input type="text" id="datepicker_inicio_a2"></p>
 							<label> Fecha Final: </label>
 							<p><input type="text" id="datepicker_fin_a2"></p>
+							<label> Predecesor Actividad 2 </label>
+							<select name="select_predecesor_2" id="select_predecesor_a2">
+								<option value="1"> Inicio proyecto </option>
+							  	<option value="1_1"> Actividad 1 </option>
+							  	<option value="1_3"> Actividad 3 </option>
+							  	<option value="1_4"> Actividad 4 </option>
+							  	<option value="1_5"> Actividad 5 </option>
+							</select>
 						</td>
 						<td>
 							<label> Actividad 3</label>
@@ -75,6 +91,14 @@
 							<p><input type="text" id="datepicker_inicio_a3"></p>
 							<label> Fecha Final: </label>
 							<p><input type="text" id="datepicker_fin_a3"></p>
+							<label> Predecesor Actividad 3 </label>
+							<select name="select_predecesor_3" id="select_predecesor_a3">
+								<option value="1"> Inicio proyecto </option>
+							  	<option value="1_1"> Actividad 1 </option>
+							  	<option value="1_2"> Actividad 2 </option>
+							  	<option value="1_4"> Actividad 4 </option>
+							  	<option value="1_5"> Actividad 5 </option>
+							</select>
 						</td>
 						<td>
 							<label> Actividad 4</label>
@@ -85,6 +109,14 @@
 							<p><input type="text" id="datepicker_inicio_a4"></p>
 							<label> Fecha Final: </label>
 							<p><input type="text" id="datepicker_fin_a4"></p>
+							<label> Predecesor Actividad 4 </label>
+							<select name="select_predecesor_4" id="select_predecesor_a4">
+								<option value="1"> Inicio proyecto </option>
+								<option value="1_1"> Actividad 1 </option>
+							  	<option value="1_2"> Actividad 2 </option>
+							  	<option value="1_3"> Actividad 3 </option>
+							  	<option value="1_5"> Actividad 5 </option>
+							</select>
 						</td>
 						<td>
 							<label> Actividad 5</label>
@@ -95,6 +127,14 @@
 							<p><input type="text" id="datepicker_inicio_a5"></p>
 							<label> Fecha Final: </label>
 							<p><input type="text" id="datepicker_fin_a5"></p>
+							<label> Predecesor Actividad 5 </label>
+							<select name="select_predecesor_5" id="select_predecesor_a5">
+								<option value="1"> Inicio proyecto </option>
+								<option value="1_1"> Actividad 1 </option>
+							  	<option value="1_2"> Actividad 2 </option>
+							  	<option value="1_3"> Actividad 3 </option>
+							  	<option value="1_4"> Actividad 4 </option>
+							</select>
 						</td>
 					</tbody>
 				</table>
@@ -109,37 +149,63 @@
 	var boton_np = document.getElementById('boton_crear')
 	var npdatein = document.getElementById('datepicker_inicio');
 	var npdatefin = document.getElementById('datepicker_fin');
-	let np=document.getElementById('nombre_proyecto_input')
-	let na1=document.getElementById('nombre_actividad_1')
-	let pora1=document.getElementById('slider_actividad_1')
-	let na2=document.getElementById('nombre_actividad_2')
-	let pora2=document.getElementById('slider_actividad_2')
-	let na3=document.getElementById('nombre_actividad_3')
-	let pora3=document.getElementById('slider_actividad_3')
-	let na4=document.getElementById('nombre_actividad_4')
-	let pora4=document.getElementById('slider_actividad_4')
-	let na5=document.getElementById('nombre_actividad_5')
-	let pora5=document.getElementById('slider_actividad_5')
+	var npdatein_a1 = document.getElementById('datepicker_inicio_a1');
+	var npdatefin_a1 = document.getElementById('datepicker_fin_a1');
+	var npdatein_a2 = document.getElementById('datepicker_inicio_a2');
+	var npdatefin_a2 = document.getElementById('datepicker_fin_a2');
+	var npdatein_a3 = document.getElementById('datepicker_inicio_a3');
+	var npdatefin_a3 = document.getElementById('datepicker_fin_a3');
+	var npdatein_a4 = document.getElementById('datepicker_inicio_a4');
+	var npdatefin_a4 = document.getElementById('datepicker_fin_a4');
+	var npdatein_a5 = document.getElementById('datepicker_inicio_a5');
+	var npdatefin_a5 = document.getElementById('datepicker_fin_a5');
+	var caso1 = 'finish-start'
+	var caso2 = 'start-start'
+	var caso3 = 'start-finish'
+	let np = document.getElementById('nombre_proyecto_input')
+	let na1 = document.getElementById('nombre_actividad_1')
+	let pora1 = document.getElementById('slider_actividad_1')
+	let preda1 = document.getElementById('select_predecesor_a1')
+	let na2 = document.getElementById('nombre_actividad_2')
+	let pora2 = document.getElementById('slider_actividad_2')
+	let na3 = document.getElementById('nombre_actividad_3')
+	let pora3 = document.getElementById('slider_actividad_3')
+	let na4 = document.getElementById('nombre_actividad_4')
+	let pora4 = document.getElementById('slider_actividad_4')
+	let na5 = document.getElementById('nombre_actividad_5')
+	let pora5 = document.getElementById('slider_actividad_5')
+
 	boton_np.addEventListener("click", Crear)
 	function Crear(){	
-		npvalue=np.value;
-		na1value=na1.value;
-		npdatevalue=npdatein.value;
-		npdatefinvalue=npdatefin.value;
-		pora1value=pora1.value;
-		pora1value=pora1value.toString();
+		npvalue = np.value;
+		npdatevalue = npdatein.value;
+		npdatefinvalue = npdatefin.value;
+		na1value = na1.value;
+		pora1value = pora1.value;
+		pora1value = pora1value.toString();
+		preda1value = preda1.value;
+		npdatevalue_a1=npdatein_a1.value;
+		npdatefinvalue_a1=npdatefin_a1.value;
 		na2value=na2.value;
 		pora2value=pora2.value;
 		pora2value=pora2value.toString();
+		npdatevalue_a2=npdatein_a2.value;
+		npdatefinvalue_a2=npdatefin_a2.value;
 		na3value=na3.value;
 		pora3value=pora3.value;
 		pora3value=pora3value.toString();
+		npdatevalue_a3=npdatein_a3.value;
+		npdatefinvalue_a3=npdatefin_a3.value;
 		na4value=na4.value;
 		pora4value=pora4.value;
 		pora4value=pora4value.toString();
+		npdatevalue_a4=npdatein_a4.value;
+		npdatefinvalue_a4=npdatefin_a4.value;
 		na5value=na5.value;
 		pora5value=pora5.value;
 		pora5value=pora5value.toString();
+		npdatevalue_a5=npdatein_a5.value;
+		npdatefinvalue_a5=npdatefin_a5.value;
 	anychart.onDocumentReady(function() {			
 		var data = [{
 			id: "1",
@@ -149,46 +215,46 @@
 			children: [{
 					id: "1_1",
 					name: na1value,
-					actualStart: Date.UTC(2022, 01, 02),
-					actualEnd: Date.UTC(2022, 01, 22),
-					connectTo: "1_2",
-					connectorType: "finish-start",	
+					actualStart: npdatevalue_a1,
+					actualEnd: npdatefinvalue_a1,
+					connectTo: preda1value,
+					connectorType: caso1,	
 					progressValue: pora1value/100
 				},
 				{
 					id: "1_2",
 					name: na2value,
-					actualStart: Date.UTC(2022, 01, 23),
-					actualEnd: Date.UTC(2022, 02, 20),
+					actualStart: npdatevalue_a2,
+					actualEnd: npdatefinvalue_a2,
 					connectTo: "1_3",
-					connectorType: "start-start",
+					connectorType: caso2,
 					progressValue: pora2value/100
 				},
 				{
 					id: "1_3",
 					name: na3value,
-					actualStart: Date.UTC(2022, 02, 23),
-					actualEnd: Date.UTC(2022, 02, 23),
+					actualStart: npdatevalue_a3,
+					actualEnd: npdatefinvalue_a3,
 					connectTo: "1_4",
-					connectorType: "start-start",
+					connectorType: caso3,
 					progressValue: pora3value/100
 				},
 				{
 					id: "1_4",
 					name: na4value,
-					actualStart: Date.UTC(2022, 02, 26),
-					actualEnd: Date.UTC(2022, 04, 26),
+					actualStart: npdatevalue_a4,
+					actualEnd: npdatefinvalue_a4,
 					connectTo: "1_5",
-					connectorType: "finish-start",
+					connectorType: caso2,
 					progressValue: pora4value/100
 				},
 				{
 					id: "1_5",
 					name: na5value,
-					actualStart: Date.UTC(2022, 04, 29),
-					actualEnd: Date.UTC(2022, 05, 15),
+					actualStart: npdatevalue_a5,
+					actualEnd: npdatefinvalue_a5,
 					connectTo: "1_6",
-					connectorType: "start-finish",
+					connectorType: caso1,
 					progressValue: pora5value/100
 				},
 			]
@@ -200,6 +266,8 @@
 		var chart = anychart.ganttProject();
 
 		chart.data(treeData);
+		chart.edit(true);
+		chart.getTimeline().periods().edit(true);
 		chart.getTimeline().scale().minimum(Date.UTC(2022, 06, 1));
 		chart.getTimeline().scale().maximum(Date.UTC(2023, 06, 30));
 		chart.defaultRowHeight(15);

@@ -10,6 +10,7 @@ html,body{
 
 .container_1{
     display: block;
+    align-items: center;
     overflow: hidden;
     background-color: #333;
 }
