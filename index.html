@@ -47,7 +47,7 @@
 							<p><input type="text" id="datepicker_fin"></p>
 						</td>
 						<td>
-							<label> Nombre Actividad 1</label>
+							<label> Actividad 1</label>
 							<input type="text" id="nombre_actividad_1" name="name_actividad_1">
 							<label> Nivel de cumplimiento Actividad 1</label>
 							<input type="range" min="1" max="100" value="50" class="slider" id="slider_actividad_1">
@@ -55,9 +55,8 @@
 							<p><input type="text" id="datepicker_inicio_a1"></p>
 							<label> Fecha Final: </label>
 							<p><input type="text" id="datepicker_fin_a1"></p>
-							<label> Predecesor Actividad 1 </label>
+							<label> Actividad 1 conecta a: </label>
 							<select name="select_predecesor" id="select_predecesor_a1">
-								<option value="1"> Inicio proyecto </option>
 							  	<option value="1_2"> Actividad 2 </option>
 							  	<option value="1_3"> Actividad 3 </option>
 							  	<option value="1_4"> Actividad 4 </option>
@@ -73,9 +72,8 @@
 							<p><input type="text" id="datepicker_inicio_a2"></p>
 							<label> Fecha Final: </label>
 							<p><input type="text" id="datepicker_fin_a2"></p>
-							<label> Predecesor Actividad 2 </label>
+							<label> Actividad 2 conecta a: </label>
 							<select name="select_predecesor_2" id="select_predecesor_a2">
-								<option value="1"> Inicio proyecto </option>
 							  	<option value="1_1"> Actividad 1 </option>
 							  	<option value="1_3"> Actividad 3 </option>
 							  	<option value="1_4"> Actividad 4 </option>
@@ -91,9 +89,8 @@
 							<p><input type="text" id="datepicker_inicio_a3"></p>
 							<label> Fecha Final: </label>
 							<p><input type="text" id="datepicker_fin_a3"></p>
-							<label> Predecesor Actividad 3 </label>
+							<label> Actividad 3 conecta a: </label>
 							<select name="select_predecesor_3" id="select_predecesor_a3">
-								<option value="1"> Inicio proyecto </option>
 							  	<option value="1_1"> Actividad 1 </option>
 							  	<option value="1_2"> Actividad 2 </option>
 							  	<option value="1_4"> Actividad 4 </option>
@@ -109,9 +106,8 @@
 							<p><input type="text" id="datepicker_inicio_a4"></p>
 							<label> Fecha Final: </label>
 							<p><input type="text" id="datepicker_fin_a4"></p>
-							<label> Predecesor Actividad 4 </label>
+							<label> Actividad 4 conecta a: </label>
 							<select name="select_predecesor_4" id="select_predecesor_a4">
-								<option value="1"> Inicio proyecto </option>
 								<option value="1_1"> Actividad 1 </option>
 							  	<option value="1_2"> Actividad 2 </option>
 							  	<option value="1_3"> Actividad 3 </option>
@@ -127,9 +123,8 @@
 							<p><input type="text" id="datepicker_inicio_a5"></p>
 							<label> Fecha Final: </label>
 							<p><input type="text" id="datepicker_fin_a5"></p>
-							<label> Predecesor Actividad 5 </label>
+							<label> Actividad 5 conecta a: </label>
 							<select name="select_predecesor_5" id="select_predecesor_a5">
-								<option value="1"> Inicio proyecto </option>
 								<option value="1_1"> Actividad 1 </option>
 							  	<option value="1_2"> Actividad 2 </option>
 							  	<option value="1_3"> Actividad 3 </option>
@@ -168,12 +163,16 @@
 	let preda1 = document.getElementById('select_predecesor_a1')
 	let na2 = document.getElementById('nombre_actividad_2')
 	let pora2 = document.getElementById('slider_actividad_2')
+	let preda2 = document.getElementById('select_predecesor_a2')	
 	let na3 = document.getElementById('nombre_actividad_3')
 	let pora3 = document.getElementById('slider_actividad_3')
+	let preda3 = document.getElementById('select_predecesor_a3')
 	let na4 = document.getElementById('nombre_actividad_4')
 	let pora4 = document.getElementById('slider_actividad_4')
+	let preda4 = document.getElementById('select_predecesor_a4')
 	let na5 = document.getElementById('nombre_actividad_5')
 	let pora5 = document.getElementById('slider_actividad_5')
+	let preda5 = document.getElementById('select_predecesor_a5')
 
 	boton_np.addEventListener("click", Crear)
 	function Crear(){	
@@ -189,21 +188,25 @@
 		na2value=na2.value;
 		pora2value=pora2.value;
 		pora2value=pora2value.toString();
+		preda2value = preda2.value;
 		npdatevalue_a2=npdatein_a2.value;
 		npdatefinvalue_a2=npdatefin_a2.value;
 		na3value=na3.value;
 		pora3value=pora3.value;
 		pora3value=pora3value.toString();
+		preda3value = preda3.value;
 		npdatevalue_a3=npdatein_a3.value;
 		npdatefinvalue_a3=npdatefin_a3.value;
 		na4value=na4.value;
 		pora4value=pora4.value;
 		pora4value=pora4value.toString();
+		preda4value = preda4.value;
 		npdatevalue_a4=npdatein_a4.value;
 		npdatefinvalue_a4=npdatefin_a4.value;
 		na5value=na5.value;
 		pora5value=pora5.value;
 		pora5value=pora5value.toString();
+		preda5value = preda5.value;
 		npdatevalue_a5=npdatein_a5.value;
 		npdatefinvalue_a5=npdatefin_a5.value;
 	anychart.onDocumentReady(function() {			
@@ -226,7 +229,7 @@
 					name: na2value,
 					actualStart: npdatevalue_a2,
 					actualEnd: npdatefinvalue_a2,
-					connectTo: "1_3",
+					connectTo: preda2value,
 					connectorType: caso2,
 					progressValue: pora2value/100
 				},
@@ -235,7 +238,7 @@
 					name: na3value,
 					actualStart: npdatevalue_a3,
 					actualEnd: npdatefinvalue_a3,
-					connectTo: "1_4",
+					connectTo: preda3value,
 					connectorType: caso3,
 					progressValue: pora3value/100
 				},
@@ -244,7 +247,7 @@
 					name: na4value,
 					actualStart: npdatevalue_a4,
 					actualEnd: npdatefinvalue_a4,
-					connectTo: "1_5",
+					connectTo: preda4value,
 					connectorType: caso2,
 					progressValue: pora4value/100
 				},
@@ -253,7 +256,7 @@
 					name: na5value,
 					actualStart: npdatevalue_a5,
 					actualEnd: npdatefinvalue_a5,
-					connectTo: "1_6",
+					connectTo: preda5value,
 					connectorType: caso1,
 					progressValue: pora5value/100
 				},
